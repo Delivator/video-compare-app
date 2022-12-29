@@ -117,9 +117,13 @@
                 video1.pause();
                 video2.pause();
                 setTimeout(() => {
-                    video2.currentTime = video1.currentTime;
-                }, 250);
+                    const newTime = Math.round(video1.currentTime * 10) / 10
+                    video1.currentTime = newTime;
+                }, 333);
             }
+        })
+        video1.addEventListener("seeked", () => {
+            if (video1.paused) video2.currentTime = video1.currentTime;
         })
         function seekVideos(time) {
             // video1.pause();
